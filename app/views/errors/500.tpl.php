@@ -1,4 +1,4 @@
 <?php
 require VIEWS . '/incs/header.php' ;
-renderErrorHtml("404 - Page not found");
+renderErrorHtml("500 - Server error");
 require VIEWS . '/incs/footer.php';

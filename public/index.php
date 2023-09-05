@@ -1,25 +1,15 @@
 <?php
 
-define('ROOT', dirname(__DIR__)); // константа, которая будет указываться на корень приложения
-define('PUBLIC', ROOT . '/public'); // константа, которая будет указывать на папку public
-define('CORE', ROOT . '/core');
-define('APP', ROOT . '/app');
-define('CONTROLLERS', APP . '/controllers');
-define('VIEWS', APP . '/views');
-define('PATH', 'http://phpproject'); // Переменная, указывающая на главную страницу проекта
-
+require dirname(__DIR__) . '/config/config.php';
 require CORE . '/funcs.php';
 
-$uri = trim(parse_url($_SERVER['REQUEST_URI'])['path'], '/' );
+require CORE . '/classes/Db.php';
 
-if($uri === ''){
-    require CONTROLLERS . '/index.php';
-}
-elseif($uri == 'about'){
-    require  CONTROLLERS . '/about.php';
-}
-else{
-    abort();
-}
+$db_config = require CONFIG . '/db.php';
+$db = new Db($db_config);
+
+
+require CORE . '/router.php';
+
 
 
